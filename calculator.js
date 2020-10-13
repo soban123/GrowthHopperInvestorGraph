@@ -1,36 +1,26 @@
-// let banksReturns = [
-//     {bank:'faysalbank' , returns : 3.24} , 
-//     {bank:'standardchartered' , returns : 5.5} , 
-//     {bank:'alfalah' , returns : 5.5} , 
-//     {bank:'bankislamic' , returns : 4.15 } ,
-//     {bank:'meezan' , returns : 3.09}
-// ]
 
+
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let growthHopperReturns =  {
     label: 'Growth Hopper Returns',
     fill: false,
     backgroundColor: 'rgb(47, 91, 120)',
     borderColor: 'rgb(47, 91, 120)',
-    data: [
-      3200 , 1000 , 234 , 3003 , 4400 , 10034
-    ]
+   
 }
 let banksreturns = {
     label: 'Initial Bank dataset',
     fill: false,
     backgroundColor: 'rgb(255, 145, 0)',
     borderColor: 'rgb(255, 145, 0)',
-    data: [
-        200 , 1000 , 2234 , 33 , 400 , 10034
-    ],
+   
 }
 
 var config = {
     type: 'line',
     data: {
         labels: [ 'July', 'August', 'September', 'October', 'November', 'December'],
-        datasets: [ growthHopperReturns , banksreturns 
-    ]
+     
     },
     options: {
         responsive: true,
@@ -112,9 +102,18 @@ function change (value , isBank){
 
 
     var ctx = document.getElementById('canvas').getContext('2d');
-
+    let date = new Date()
+    let currMonth = date.getMonth()
+    let arrayOfMonths = [];
+    for(let i = 0 ; i < 6  ;i++){
+        if(currMonth+i > 11){
+            arrayOfMonths.push(months[ (currMonth + i ) - 12  ])
+        }else{
+            arrayOfMonths.push(months[currMonth+i])
+        }
+    }
      new Chart(ctx, {...config , data: {
-        labels: [ 'July', 'August', 'September', 'October', 'November', 'December'],
+        labels: arrayOfMonths,
         datasets: [ growthHopperReturns , banksreturns 
     ]
     } }
